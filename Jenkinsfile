@@ -33,14 +33,21 @@ pipeline {
      
 }
 
+}
 
 
+ post {
+        always {
+            junit allowEmptyResults: true,
+                  testResults: '**/target/surefire-reports/*.xml'
+        }
 
+        success {
+            echo 'CI PIPELINE SUCCESSFUL'
+        }
 
-
-
-
-
-
-
+        failure {
+            echo 'CI PIPELINE FAILED'
+        }
+    }
 }
